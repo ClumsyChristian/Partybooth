@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#7A0C20">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="PartyBooth">
+<title>PartyBooth</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- ============ START / ATTRACT ============ -->
+  <section class="screen active" id="screen-start" aria-label="Start">
+    <div class="curtain" aria-hidden="true"></div>
+    <div class="start-slides" id="startSlides" aria-hidden="true"></div>
+    <div class="corner-bar">
+      <button class="icon-btn" id="btnGallery" aria-label="Photo gallery" title="Gallery">
+        <svg viewBox="0 0 24 24" width="26" height="26"><path fill="currentColor" d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg>
+      </button>
+      <button class="icon-btn" id="btnFullscreen" aria-label="Full screen" title="Full screen">
+        <svg viewBox="0 0 24 24" width="26" height="26"><path fill="currentColor" d="M4 4h6v2H6v4H4zm10 0h6v6h-2V6h-4zM4 14h2v4h4v2H4zm14 0h2v6h-6v-2h4z"/></svg>
+      </button>
+      <button class="icon-btn" id="btnSettings" aria-label="Settings" title="Settings">
+        <svg viewBox="0 0 24 24" width="26" height="26"><path fill="currentColor" d="M19.4 13a7.6 7.6 0 0 0 0-2l2.1-1.6-2-3.5-2.5 1a7.7 7.7 0 0 0-1.7-1L15 3h-4l-.4 2.9a7.7 7.7 0 0 0-1.7 1l-2.5-1-2 3.5L6.6 11a7.6 7.6 0 0 0 0 2l-2.1 1.6 2 3.5 2.5-1a7.7 7.7 0 0 0 1.7 1L11 21h4l.4-2.9a7.7 7.7 0 0 0 1.7-1l2.5 1 2-3.5zM13 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z" transform="translate(-1 0)"/></svg>
+      </button>
+    </div>
+
+    <div class="start-main">
+      <div class="marquee" id="marquee">
+        <h1 id="eventTitle">Party Time</h1>
+        <p id="eventSub"></p>
+      </div>
+
+      <div class="chooser" id="modeSwitch" role="radiogroup" aria-label="What to make"></div>
+      <div class="layout-picker" id="layoutPicker" role="radiogroup" aria-label="Choose your card"></div>
+      <div class="backdrop-picker" id="backdropPicker" role="radiogroup" aria-label="Choose a backdrop"></div>
+
+      <button class="big-go" id="btnStart"><span id="btnStartLabel">Tap to start</span></button>
+      <p class="start-hint" id="startHint"></p>
+    </div>
+  </section>
+
+  <!-- ============ CAPTURE ============ -->
+  <section class="screen" id="screen-capture" aria-label="Taking photos">
+    <div class="live" id="liveWrap">
+      <video id="video" playsinline muted autoplay></video>
+      <canvas id="liveCanvas"></canvas>
+      <img id="liveImg" alt="">
+      <div class="no-preview" id="noPreview" hidden>
+        <p>Look at the camera</p>
+      </div>
+      <div class="frame-guide" id="frameGuide"></div>
+    </div>
+    <div class="cap-top">
+      <button class="icon-btn" id="btnCancel" aria-label="Cancel">
+        <svg viewBox="0 0 24 24" width="26" height="26"><path fill="currentColor" d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6 10.6 12 5 6.4z"/></svg>
+      </button>
+      <div class="shot-pill" id="shotPill"></div>
+      <div class="shot-thumbs" id="shotThumbs"></div>
+    </div>
+    <div class="pose-prompt" id="posePrompt"></div>
+    <div class="countdown" id="countdown" aria-live="assertive"></div>
+    <div class="waiting" id="waiting" hidden><div class="spinner"></div><p id="waitingText">Hold that pose…</p></div>
+    <img class="instant" id="instantReview" alt="">
+    <div class="flash" id="flash"></div>
+  </section>
+
+  <!-- ============ REVIEW ============ -->
+  <section class="screen" id="screen-review" aria-label="Your photo">
+    <div class="review-stage" id="reviewStage">
+      <div class="print-wrap" id="printWrap">
+        <canvas id="reviewCanvas"></canvas>
+        <img id="reviewGif" alt="Your animated GIF" hidden>
+        <canvas id="doodleCanvas"></canvas>
+        <div class="sticker-layer" id="stickerLayer"></div>
+      </div>
+    </div>
+    <aside class="review-tools">
+      <nav class="tool-tabs" id="toolTabs" role="tablist"></nav>
+      <div class="tool-panels" id="toolPanels"></div>
+      <div class="actions" id="reviewActions">
+        <button id="btnRetake" class="btn ghost">Retake</button>
+        <button id="btnPrint" class="btn">Print</button>
+        <button id="btnEmail" class="btn">Email</button>
+        <button id="btnShare" class="btn">Save</button>
+        <button id="btnPhone" class="btn" hidden>Phone</button>
+        <button id="btnDone" class="btn primary">Done</button>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section class="screen light" id="screen-gallery" aria-label="Gallery">
+    <header class="bar">
+      <button class="btn ghost" id="btnGalleryBack">Back</button>
+      <h2 id="galleryTitle">Photos</h2>
+      <div class="bar-actions">
+        <button class="btn" id="btnSlideshow">Slideshow</button>
+        <button class="btn" id="btnExportAll" data-admin>Download all</button>
+      </div>
+    </header>
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </section>
+
+  <!-- ============ SETTINGS ============ -->
+  <section class="screen light" id="screen-settings" aria-label="Settings">
+    <header class="bar">
+      <button class="btn primary" id="btnSettingsDone">Back to booth</button>
+      <h2>Settings</h2>
+      <div class="bar-actions"><span class="env-badge" id="envBadge"></span></div>
+    </header>
+    <div class="settings-body">
+      <nav class="settings-nav" id="settingsNav"></nav>
+      <div class="settings-content" id="settingsContent"></div>
+    </div>
+  </section>
+
+  <!-- ============ LAYOUT EDITOR ============ -->
+  <section class="screen light" id="screen-editor" aria-label="Card layout editor">
+    <header class="bar">
+      <button class="btn ghost" id="btnEditorCancel">Cancel</button>
+      <input class="title-input" id="edName" aria-label="Layout name" placeholder="Layout name">
+      <div class="bar-actions"><button class="btn primary" id="btnEditorSave">Save layout</button></div>
+    </header>
+    <div class="editor-body">
+      <div class="editor-stage" id="edStageWrap">
+        <canvas id="edCanvas"></canvas>
+        <canvas id="edOverlay"></canvas>
+      </div>
+      <div class="editor-panel" id="edPanel"></div>
+    </div>
+  </section>
+</div>
+
+<div id="modalRoot"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<div id="slideshow" hidden></div>
+<input type="file" id="fileInput" hidden>
+
+<script src="js/util.js"></script>
+<script src="js/qr.js"></script>
+<script src="js/gif.js"></script>
+<script src="js/layouts.js"></script>
+<script src="js/compose.js"></script>
+<script src="js/camera.js"></script>
+<script src="js/output.js"></script>
+<script src="js/editor.js"></script>
+<script src="js/settings.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
