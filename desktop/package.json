@@ -1,0 +1,26 @@
+{
+  "name": "partybooth",
+  "productName": "PartyBooth",
+  "version": "1.0.0",
+  "description": "Party photo booth for Windows: DSLR support, custom card layouts, printing, email, phone download, GIFs and green screen.",
+  "main": "main.js",
+  "license": "MIT",
+  "author": "PartyBooth",
+  "scripts": {
+    "copy-app": "node scripts/copy-app.js",
+    "start": "npm run copy-app && electron .",
+    "dist": "npm run copy-app && electron-builder --win nsis portable"
+  },
+  "devDependencies": {
+    "electron": "39.2.0",
+    "electron-builder": "^26.0.0"
+  },
+  "build": {
+    "appId": "app.partybooth.desktop",
+    "productName": "PartyBooth",
+    "files": ["main.js", "preload.js", "smtp.js", "package.json", "app/**/*"],
+    "directories": { "output": "dist" },
+    "win": { "icon": "app/icons/icon.ico", "target": ["nsis", "portable"] },
+    "nsis": { "oneClick": false, "allowToChangeInstallationDirectory": true, "createDesktopShortcut": true, "shortcutName": "PartyBooth" }
+  }
+}

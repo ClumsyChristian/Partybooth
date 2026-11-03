@@ -1,0 +1,6 @@
+/* Bundled fonts (SIL Open Font License, see fonts/OFL-LICENSE.txt) — no internet needed at the venue. */
+@font-face { font-family: 'Bungee'; src: url('../fonts/Bungee.woff') format('woff'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Caveat'; src: url('../fonts/Caveat.woff') format('woff'); font-weight: 400 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Nunito'; src: url('../fonts/Nunito.woff') format('woff'); font-weight: 200 1000; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Pacifico'; src: url('../fonts/Pacifico.woff') format('woff'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Playfair Display'; src: url('../fonts/PlayfairDisplay-Italic.woff') format('woff'); font-weight: 400 900; font-style: italic; font-display: swap; }

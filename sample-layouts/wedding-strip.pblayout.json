@@ -1,0 +1,21 @@
+{
+  "pbLayout": 1,
+  "name": "Wedding strip",
+  "width": 600,
+  "height": 1800,
+  "print": "2x6",
+  "background": { "gradient": ["#FFFFFF", "#F3EEE8"], "angle": 180 },
+  "slots": [
+    { "x": 40, "y": 40, "w": 520, "h": 390, "radius": 8 },
+    { "x": 40, "y": 450, "w": 520, "h": 390, "radius": 8 },
+    { "x": 40, "y": 860, "w": 520, "h": 390, "radius": 8 }
+  ],
+  "shapes": [
+    { "x": 200, "y": 1330, "w": 200, "h": 3, "fill": "#B08D57" }
+  ],
+  "texts": [
+    { "text": "{event}", "x": 300, "y": 1440, "size": 64, "font": "Elegant", "weight": 700, "color": "#2B2942", "align": "center", "maxWidth": 520 },
+    { "text": "{date}", "x": 300, "y": 1545, "size": 32, "font": "Rounded", "weight": 600, "color": "#8A7A66", "align": "center", "maxWidth": 520 },
+    { "text": "{hashtag}", "x": 300, "y": 1605, "size": 32, "font": "Rounded", "weight": 800, "color": "#B08D57", "align": "center", "maxWidth": 520 }
+  ]
+}

@@ -1,0 +1,5 @@
+desktop/app/
+desktop/node_modules/
+desktop/dist/
+.DS_Store
+Thumbs.db
